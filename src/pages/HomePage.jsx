@@ -12,9 +12,6 @@ export default function HomePage() {
         </Link>
       </div>
 
-      <div className="bg-gray-300 h-60">
-
-      </div>
     </>
   );
 }
