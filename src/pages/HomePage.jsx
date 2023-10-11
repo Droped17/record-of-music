@@ -1,16 +1,31 @@
-import {Link} from "react-router-dom";
+import RecordCardItem from "../components/RecordCardItem";
+import HeaderMenu from "../components/HeaderMenu";
 
 export default function HomePage() {
   return (
     <>
-      <div className="border-b  flex justify-center gap-3">
-        <Link to="/genere">
-          <div className="hover:bg-gray-300 transition p-2">genere</div>
-        </Link>
-        <Link to="/albums">
-          <div className="hover:bg-gray-300 transition p-2">albums</div>
-        </Link>
+      <HeaderMenu></HeaderMenu>
+
+      <div className="bg-gray-100">
+        <div className="text-center pt-2 text-2xl font-semibold">Recommend</div>
+        <div className="flex gap-5 p-5 justify-center">
+
+        </div>
       </div>
+
+      <div className="grid grid-cols-4 p-10 gap-16">
+      <RecordCardItem></RecordCardItem>
+      <RecordCardItem></RecordCardItem>
+      <RecordCardItem></RecordCardItem>
+      <RecordCardItem></RecordCardItem>
+      <RecordCardItem></RecordCardItem>
+      <RecordCardItem></RecordCardItem>
+      <RecordCardItem></RecordCardItem>
+      <RecordCardItem></RecordCardItem>
+
+
+      </div>
+
 
     </>
   );

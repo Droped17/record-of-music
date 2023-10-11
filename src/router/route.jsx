@@ -4,6 +4,8 @@ import HomePage from "../pages/Homepage";
 import LoginPage from "../pages/LoginPage.";
 import Layout from "../layout/Layout";
 import RegisterPage from "../pages/RegisterPage";
+import GenerePage from "../pages/GenerePage";
+import AlbumsPage from "../pages/AlbumsPage";
 
 const router = createBrowserRouter([
   {
@@ -11,7 +13,10 @@ const router = createBrowserRouter([
     element: <Layout></Layout>,
     children: [
       { path: "", element: <HomePage></HomePage> },
-
+      { path: "/genere", element: <GenerePage></GenerePage> },
+      { path: "albums", element: <AlbumsPage></AlbumsPage> },
+      
+      
     ],
   },
   { path: "/login", element: <LoginPage></LoginPage> },
