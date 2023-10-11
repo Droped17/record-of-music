@@ -18,6 +18,11 @@ export default function RecordCardItem() {
             </p>
 
           </div>
+
+          <div className="px-5 py-2 flex justify-between">
+            <p className="font-semibold">Price: </p>
+            <p className="text-lg font-bold">999 &#3647;</p>
+          </div>
         </div>
       </div>
     </>
