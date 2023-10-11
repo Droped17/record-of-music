@@ -4,7 +4,7 @@ export default function HeaderMenu() {
     <>
       <div className="border-b flex justify-center gap-3 mb-4">
         <Link to="/genere">
-          <div className="hover:bg-gray-300 transition p-2">genere</div>
+          <div className="hover:underline transition p-2">genere</div>
         </Link>
         <Link to="/albums">
           <div className="hover:bg-gray-300 transition p-2">albums</div>

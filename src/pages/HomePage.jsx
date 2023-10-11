@@ -11,7 +11,7 @@ export default function HomePage() {
         <div className="flex gap-5 p-5 justify-center"></div>
       </div>
 
-      <main className="grid grid-cols-4 p-10 gap-16">
+      <main className="p-10 gap-16 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
         <RecordCardItem></RecordCardItem>
         <RecordCardItem></RecordCardItem>
         <RecordCardItem></RecordCardItem>

@@ -1,5 +1,14 @@
 import { Link } from "react-router-dom";
+import Dropdown from "../components/Dropdown";
+import { useState } from "react";
 export default function Header() {
+
+  const [dropDownStatus,setDropDownStatus] = useState(false);
+
+  const handleDropdown = () => {
+    setDropDownStatus(!dropDownStatus);
+  }
+
   return (
     <>
       <header className="bg-white border shadow-md p-2 flex justify-between sticky top-0">
@@ -14,20 +23,23 @@ export default function Header() {
           </div>
         </Link>
 
-        <div className="font-semibold text-md hover:bg-green-300 rounded-md cursor-pointer w-80">
-          <div className="flex items-center">
+        <div className="font-semibold text-mdrounded-md w-80 p-1 relative">
+          <div className="flex justify-between items-center">
             {" "}
-            <div>
+            <div className="flex items-center flex-1">
               <img
                 src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                 alt="user"
                 className="w-10 border rounded-full"
               />
+              <div className="px-2">username</div>
             </div>
-            <div className="px-2">username</div>
+            <div className="cursor-pointer " onClick={handleDropdown}>ICON</div>
+
           </div>
-            <div></div>
+          {dropDownStatus && <Dropdown></Dropdown>}
         </div>
+        
       </header>
     </>
   );
