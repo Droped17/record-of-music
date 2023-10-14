@@ -37,7 +37,7 @@ export default function Header() {
             <div className="cursor-pointer " onClick={handleDropdown}>ICON</div>
 
           </div>
-          {dropDownStatus && <Dropdown></Dropdown>}
+          {dropDownStatus ? <Dropdown></Dropdown> : <div></div>}
         </div>
         
       </header>
