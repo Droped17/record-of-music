@@ -1,8 +1,30 @@
 import RecordCardItem from "../components/RecordCardItem";
 import HeaderMenu from "../components/HeaderMenu";
 import { Link } from "react-router-dom";
+import axios from "../config/axios";
+import { useEffect, useState } from "react";
 
 export default function HomePage() {
+  const [getProduct, setGetProduct] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:1112/authen/product", {
+        id: "",
+        albumName: "",
+        price: "",
+        recordInfo: "",
+        image: "",
+      })
+      .then((res) => {
+        setGetProduct(res.data.product);
+        // console.log(getProduct);
+      })
+      .catch((e) => console.log(e));
+  }, []);
+
+  console.log(getProduct);
+
   return (
     <>
       <HeaderMenu></HeaderMenu>
@@ -16,24 +38,19 @@ export default function HomePage() {
       </div>
 
       <main className="p-10">
-        <Link to="/aboutrecord" className="gap-16 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
-          <RecordCardItem></RecordCardItem>
-          <RecordCardItem></RecordCardItem>
-          <RecordCardItem></RecordCardItem>
-          <RecordCardItem></RecordCardItem>
-          <RecordCardItem></RecordCardItem>
-          <RecordCardItem></RecordCardItem>
-          <RecordCardItem></RecordCardItem>
-          <RecordCardItem></RecordCardItem>
+        <Link
+          to="/aboutrecord"
+          className="gap-16 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1"
+        >
+          {getProduct.map((el) => (
+            <RecordCardItem
+              key={el.id}
+              albumName={el.albumName}
+              albumInfo={el.albumInfo}
+              price={el.price}
+            ></RecordCardItem>
+          ))}
         </Link>
-
-        {/* <div className="join">
-          <button className="join-item btn border">1</button>
-          <button className="join-item btn border">2</button>
-          <button className="join-item btn btn-disabled border">...</button>
-          <button className="join-item btn border">99</button>
-          <button className="join-item btn border">100</button>
-        </div> */}
       </main>
 
       <footer className="bg-black h-60 p-10">

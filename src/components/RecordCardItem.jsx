@@ -1,4 +1,4 @@
-export default function RecordCardItem() {
+export default function RecordCardItem({ albumName, albumInfo, price }) {
   return (
     <>
       <div className="flex items-center justify-center hover:shadow-xl cursor-pointer transition rounded-2xl">
@@ -11,17 +11,13 @@ export default function RecordCardItem() {
             />
           </figure>
           <div className="card-body p-5 bg-white rounded-b-2xl">
-            <h2 className="card-title">Album_name</h2>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa,
-              voluptate.
-            </p>
-
+            <h2 className="card-title text-xl font-semibold">{albumName}</h2>
+            <p>{albumInfo}</p>
           </div>
 
           <div className="px-5 py-2 flex justify-between">
             <p className="font-semibold">Price: </p>
-            <p className="text-lg font-bold">999 &#3647;</p>
+            <p className="text-lg font-bold">{price} &#3647;</p>
           </div>
         </div>
       </div>

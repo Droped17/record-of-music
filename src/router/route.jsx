@@ -1,9 +1,9 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
-import HomePage from "../pages/Homepage";
 import LoginPage from "../pages/LoginPage.";
 import Layout from "../layout/Layout";
 import RegisterPage from "../pages/RegisterPage";
+import HomePage from "../pages/HomePage";
 import GenerePage from "../pages/GenerePage";
 import RecommendPage from "../pages/RecommendPage";
 import AboutRecordPage from "../pages/AboutRecordPage";
