@@ -3,26 +3,30 @@ import HeaderMenu from "../components/HeaderMenu";
 import { Link } from "react-router-dom";
 import axios from "../config/axios";
 import { useEffect, useState } from "react";
+import { useProduct } from "../hooks/use-product";
 
 export default function HomePage() {
-  const [getProduct, setGetProduct] = useState([]);
+  // const [getProduct, setGetProduct] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:1112/authen/product", {
-        id: "",
-        albumName: "",
-        price: "",
-        recordInfo: "",
-        image: "",
-      })
-      .then((res) => {
-        setGetProduct(res.data.product);
-        // console.log(getProduct);
-      })
-      .catch((e) => console.log(e));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:1112/authen/product", {
+  //       id: "",
+  //       albumName: "",
+  //       price: "",
+  //       recordInfo: "",
+  //       image: "",
+  //     })
+  //     .then((res) => {
+  //       setGetProduct(res.data.product);
+  //       // console.log(getProduct);
+  //     })
+  //     .catch((e) => console.log(e));
+  // }, []);
 
+  // console.log(getProduct);
+
+  const { getProduct } = useProduct();
   console.log(getProduct);
 
   return (
@@ -38,19 +42,17 @@ export default function HomePage() {
       </div>
 
       <main className="p-10">
-        <Link
-          to="/aboutrecord"
-          className="gap-16 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1"
-        >
-          {getProduct.map((el) => (
+        <div className="gap-16 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
+          {getProduct?.map((el) => (
             <RecordCardItem
               key={el.id}
               albumName={el.albumName}
-              albumInfo={el.albumInfo}
+              recordInfo={el.recordInfo}
               price={el.price}
+              image={el.image}
             ></RecordCardItem>
           ))}
-        </Link>
+        </div>
       </main>
 
       <footer className="bg-black h-60 p-10">

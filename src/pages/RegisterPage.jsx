@@ -59,8 +59,7 @@ export default function RegisterPage() {
         addressId: "",
       });
 
-      
-
+    
     } catch (error) {
       console.log(error);
     }
