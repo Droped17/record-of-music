@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import registerSchema from "../validate/register-validate";
+import { setAccessToken } from "../utils/local-storage";
 
 const registerValidate = (inputdata) => {
   const { value, error } = registerSchema.validate(inputdata, {
@@ -14,6 +15,7 @@ const registerValidate = (inputdata) => {
     const result = error.details.reduce((acc, data) => {
       const { message, path } = data;
       acc[path[0]] = message;
+      console.log(message); //error message
       return acc;
     }, {});
     return result;
@@ -44,16 +46,19 @@ export default function RegisterPage() {
       if (validateError) {
         return setCheckError(validateError);
       }
-      setError({});
-      // await axios.post("http://localhost:1112/register", {
-      //   firstName: inputdata.firstName,
-      //   lastName: inputdata.lastName,
-      //   email: inputdata.email,
-      //   password: inputdata.password,
-      //   confirmPassword: inputdata.confirmPassword,
-      //   mobile: inputdata.mobile,
-      //   profileImage: "",
-      // });
+      setCheckError({});
+      const res = await axios.post("http://localhost:1112/authen/register", {
+        firstName: inputdata.firstName,
+        lastName: inputdata.lastName,
+        email: inputdata.email,
+        password: inputdata.password,
+        confirmPassword: inputdata.confirmPassword,
+        mobile: inputdata.mobile,
+        profileImage: "",
+        isAdmin: "",
+        addressId: "",
+      });
+
     } catch (error) {
       console.log(error);
     }
@@ -71,53 +76,82 @@ export default function RegisterPage() {
         >
           <input
             type="text"
-            className={`border p-3 ${checkError.firstName ? "border-red-500 " : ""}`}
+            className={`border p-3 ${
+              checkError.firstName ? "border-red-500 " : ""
+            }`}
             placeholder="firstName"
             name="firstName"
             onChange={handleOnChange}
             value={inputdata.firstName}
           />
+          {checkError.firstName ? (
+            <span className="text-red-500">{checkError.firstName}</span>
+          ) : undefined}
           <input
             type="text"
-            className={`border p-3 ${checkError.lastName ? "border-red-500 " : ""}`}
+            className={`border p-3 ${
+              checkError.lastName ? "border-red-500 " : ""
+            }`}
             placeholder="lastname"
             name="lastName"
             onChange={handleOnChange}
             value={inputdata.lastName}
           />
+          {checkError.lastName ? (
+            <span className="text-red-500">{checkError.lastName}</span>
+          ) : undefined}
           <input
             type="email"
-            className={`border p-3 ${checkError.email ? "border-red-500 " : ""}`}
+            className={`border p-3 ${
+              checkError.email ? "border-red-500 " : ""
+            }`}
             placeholder="email"
             name="email"
             onChange={handleOnChange}
             value={inputdata.email}
           />
+          {checkError.email ? (
+            <span className="text-red-500">{checkError.email}</span>
+          ) : undefined}
           <input
             type="password"
-            className={`border p-3 ${checkError.password ? "border-red-500 " : ""}`}
+            className={`border p-3 ${
+              checkError.password ? "border-red-500 " : ""
+            }`}
             placeholder="password"
             name="password"
             onChange={handleOnChange}
             value={inputdata.password}
           />
+          {checkError.password ? (
+            <span className="text-red-500">{checkError.password}</span>
+          ) : undefined}
           <input
             type="password"
-            className={`border p-3 ${checkError.confirmPassword ? "border-red-500 " : ""}`}
+            className={`border p-3 ${
+              checkError.confirmPassword ? "border-red-500 " : ""
+            }`}
             placeholder="confirm password"
             name="confirmPassword"
             onChange={handleOnChange}
             value={inputdata.confirmPassword}
           />
-
+          {checkError.confirmPassword ? (
+            <span className="text-red-500">{checkError.confirmPassword}</span>
+          ) : undefined}
           <input
             type="text"
-            className={`border p-3 ${checkError.mobile ? "border-red-500 " : ""}`}
+            className={`border p-3 ${
+              checkError.mobile ? "border-red-500 " : ""
+            }`}
             placeholder="mobile"
             name="mobile"
             onChange={handleOnChange}
             value={inputdata.mobile}
           />
+          {checkError.mobile ? (
+            <span className="text-red-500">{checkError.mobile}</span>
+          ) : undefined}
           <button className="bg-black text-white px-4 py-3">Register</button>
         </form>
       </div>

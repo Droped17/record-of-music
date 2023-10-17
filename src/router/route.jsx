@@ -7,22 +7,42 @@ import RegisterPage from "../pages/RegisterPage";
 import GenerePage from "../pages/GenerePage";
 import RecommendPage from "../pages/RecommendPage";
 import AboutRecordPage from "../pages/AboutRecordPage";
-
+import Authenticated from "../auth/Authenticated";
+import RedirectAuthen from "../auth/RedirectAuthen";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout></Layout>,
+    element: (
+      <Authenticated>
+        <Layout></Layout>
+      </Authenticated>
+    ),
+
     children: [
       { path: "", element: <HomePage></HomePage> },
       { path: "/genere", element: <GenerePage></GenerePage> },
       { path: "/recommend", element: <RecommendPage></RecommendPage> },
-      {path: "/aboutrecord", element: <AboutRecordPage></AboutRecordPage>},
-      
-      
+      { path: "/aboutrecord", element: <AboutRecordPage></AboutRecordPage> },
     ],
   },
-  { path: "/login", element: <LoginPage></LoginPage> },
-  { path: "/register", element: <RegisterPage></RegisterPage> },
+  {
+    path: "/login",
+    element: (
+      <RedirectAuthen>
+        {" "}
+        <LoginPage></LoginPage>
+      </RedirectAuthen>
+    ),
+  },
+  {
+    path: "/register",
+    element: (
+      <RedirectAuthen>
+        {" "}
+        <RegisterPage></RegisterPage>
+      </RedirectAuthen>
+    ),
+  },
 ]);
 
 export default function Route() {

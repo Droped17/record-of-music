@@ -8,6 +8,8 @@ const registerSchema = Joi.object({
     confirmPassword: Joi.string().valid(Joi.ref("password")).trim().required(),
     mobile: Joi.string().trim().required(),
     profileImage: '',
+    isAdmin: '',
+    addressId: ''
 });
 
 export default registerSchema;
