@@ -3,7 +3,7 @@ import { useAuthen } from '../hooks/use-auth';
 
 export default function Authenticated({children}){
     const { authStatus } = useAuthen();
-    console.log(authStatus);
+    // console.log(authStatus);
 
     if (!authStatus) {
         return <Navigate to="/login"></Navigate>

@@ -1,13 +1,18 @@
 import { Link } from "react-router-dom";
 import Dropdown from "../components/Dropdown";
 import { useState } from "react";
+import { useAuthen } from "../hooks/use-auth";
 export default function Header() {
-
-  const [dropDownStatus,setDropDownStatus] = useState(false);
+  const [dropDownStatus, setDropDownStatus] = useState(false);
 
   const handleDropdown = () => {
     setDropDownStatus(!dropDownStatus);
-  }
+  };
+
+
+
+  const {authStatus,logout} = useAuthen();
+  // console.log(authStatus);
 
   return (
     <>
@@ -32,14 +37,17 @@ export default function Header() {
                 alt="user"
                 className="w-10 border rounded-full"
               />
-              <div className="px-2">username</div>
+              <div className="px-2">{authStatus.firstName}</div>
+              <div>
+                <button className="p-2 bg-red-400 rounded-md hover:bg-red-500 transition text-white" onClick={logout}>Log Out</button>
+              </div>
             </div>
-            <div className="cursor-pointer " onClick={handleDropdown}>ICON</div>
-
+            <div className="cursor-pointer " onClick={handleDropdown}>
+              ICON
+            </div>
           </div>
           {dropDownStatus ? <Dropdown></Dropdown> : <div></div>}
         </div>
-        
       </header>
     </>
   );

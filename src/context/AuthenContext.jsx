@@ -1,11 +1,14 @@
 import axios from "../config/axios";
 import { useEffect,useState,createContext} from "react";
-import { setAccessToken, getAccessToken } from "../utils/local-storage";
+import { setAccessToken, getAccessToken, removeAccessToken } from "../utils/local-storage";
 
 export const AuthenContext = createContext(); //create context
 
 export default function AuthenContextProvider({children}) {
   const [authStatus, setAuthStatus] = useState(null); //not login
+
+  const [loadingTime,setLoadingTime] = useState(true); //loading time
+
 
   useEffect(() => {
     if (getAccessToken()) {
@@ -14,10 +17,10 @@ export default function AuthenContextProvider({children}) {
         .then((res) => setAuthStatus(res.data.user))
         .catch((e) => console.log(e))
         .finally(() => {
-          console.log("loading");
+          setLoadingTime(false);
         });
     } else {
-      console.log("loading");
+      setLoadingTime(false);
     }
   }, []);
 
@@ -34,9 +37,14 @@ export default function AuthenContextProvider({children}) {
     setAuthStatus(res.data.user);
   };
 
+  const logout = () => {
+    removeAccessToken();
+    setAuthStatus(null);
+  }
+
 
   return (
-    <AuthenContext.Provider value={{ authStatus,login,register }}>
+    <AuthenContext.Provider value={{ authStatus,login,register,loadingTime,logout }}>
       {children}
     </AuthenContext.Provider>
   );

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import registerSchema from "../validate/register-validate";
-import { setAccessToken } from "../utils/local-storage";
+
 
 const registerValidate = (inputdata) => {
   const { value, error } = registerSchema.validate(inputdata, {
@@ -58,6 +58,8 @@ export default function RegisterPage() {
         isAdmin: "",
         addressId: "",
       });
+
+      
 
     } catch (error) {
       console.log(error);
