@@ -1,31 +1,8 @@
 import RecordCardItem from "../components/RecordCardItem";
 import HeaderMenu from "../components/HeaderMenu";
-import { Link } from "react-router-dom";
-import axios from "../config/axios";
-import { useEffect, useState } from "react";
 import { useProduct } from "../hooks/use-product";
 
 export default function HomePage() {
-  // const [getProduct, setGetProduct] = useState([]);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:1112/authen/product", {
-  //       id: "",
-  //       albumName: "",
-  //       price: "",
-  //       recordInfo: "",
-  //       image: "",
-  //     })
-  //     .then((res) => {
-  //       setGetProduct(res.data.product);
-  //       // console.log(getProduct);
-  //     })
-  //     .catch((e) => console.log(e));
-  // }, []);
-
-  // console.log(getProduct);
-
   const { getProduct } = useProduct();
   console.log(getProduct);
 
@@ -46,6 +23,7 @@ export default function HomePage() {
           {getProduct?.map((el) => (
             <RecordCardItem
               key={el.id}
+              id={el.id}
               albumName={el.albumName}
               recordInfo={el.recordInfo}
               price={el.price}

@@ -9,6 +9,7 @@ import RecommendPage from "../pages/RecommendPage";
 import AboutRecordPage from "../pages/AboutRecordPage";
 import Authenticated from "../auth/Authenticated";
 import RedirectAuthen from "../auth/RedirectAuthen";
+import CheckoutPage from "../pages/CheckoutPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,7 +23,11 @@ const router = createBrowserRouter([
       { path: "", element: <HomePage></HomePage> },
       { path: "/genere", element: <GenerePage></GenerePage> },
       { path: "/recommend", element: <RecommendPage></RecommendPage> },
-      { path: "/aboutrecord", element: <AboutRecordPage></AboutRecordPage> },
+      {
+        path: "/aboutrecord/:id",
+        element: <AboutRecordPage></AboutRecordPage>,
+      },
+      { path: "/checkout", element: <CheckoutPage></CheckoutPage> },
     ],
   },
   {

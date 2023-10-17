@@ -1,6 +1,23 @@
+import { useParams } from "react-router-dom";
 import HeaderMenu from "../components/HeaderMenu";
+import axios from "../config/axios";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export default function AboutRecordPage() {
+  const [productById, setProductById] = useState({});
+
+  const { id } = useParams(); //id from route
+  console.log(id);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:1112/authen/product/${id}`)
+      .then((res) => setProductById(res.data.product))
+      .catch((e) => console.log(e));
+  }, []);
+
+  console.log(productById);
 
   return (
     <>
@@ -9,16 +26,45 @@ export default function AboutRecordPage() {
         <div className="flex-1 flex justify-center">
           <img
             className="h-full w-[50%] object-cover "
-            src="https://images.unsplash.com/photo-1616681255209-368a2cd3e643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80"
+            src={productById.image}
             alt="homepage"
           />
         </div>
         <div className="flex-1 flex justify-center">
-          <div className="bg-white shadow-md border h-[90%] w-[60%]">asd</div>
+          <div className="bg-white shadow-md border h-[90%] w-[60%] p-5 flex flex-col justify-around">
+            <div>{productById.albumName}</div>
+            <div>{productById.price}</div>
+            <div className="flex gap-5 items-center">
+              <div>count</div>
+              <button className="bg-gray-500 px-5 py-3 rounded-full text-white">
+                -
+              </button>
+              <button className="bg-gray-500 px-5 py-3 rounded-full text-white">
+                +
+              </button>
+            </div>
+
+            <button className="bg-black text-white p-3">Add to cart</button>
+          </div>
         </div>
       </div>
 
-      
+      <div className="h-[300px] bg-red-400 flex p-5">
+        <div className="flex-1">
+          <div>About</div>
+          <div>
+            {productById.recordInfo}
+          </div>
+        </div>
+        <div className="flex-1">
+          <div>Track:</div>
+          <div>track name</div>
+          <div>track name</div>
+          <div>track name</div>
+          <div>track name</div>
+          <div>track name</div>
+        </div>
+      </div>
     </>
   );
 }

@@ -22,7 +22,7 @@ export default function ProductContextProvider({ children }) {
       .catch((e) => console.log(e));
   }, []);
 
-  console.log(getProduct);
+  // console.log(getProduct);
 
   return (
     <ProductContext.Provider value={{getProduct}}>

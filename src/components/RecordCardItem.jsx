@@ -6,13 +6,13 @@ export default function RecordCardItem({
   recordInfo,
   price,
   image,
+  id
 }) {
-  const { getProduct } = useProduct();
-  console.log(getProduct);
+
   return (
     <>
-      <Link to="/aboutrecord">
-        <div className="flex items-center justify-center hover:shadow-xl cursor-pointer transition rounded-2xl">
+      <Link to={`/aboutrecord/${id}`}>
+        <div className="flex items-center justify-center hover:shadow-2xl cursor-pointer transition rounded-2xl">
           <div className="card bg-base-100 border shadow-sm rounded-2xl">
             <figure>
               <img src={image} alt="record" className="rounded-t-2xl" />
