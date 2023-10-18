@@ -10,6 +10,7 @@ import AboutRecordPage from "../pages/AboutRecordPage";
 import Authenticated from "../auth/Authenticated";
 import RedirectAuthen from "../auth/RedirectAuthen";
 import CheckoutPage from "../pages/CheckoutPage";
+import AdminDashboard from "../admin/AdminDashboard";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
         element: <AboutRecordPage></AboutRecordPage>,
       },
       { path: "/checkout", element: <CheckoutPage></CheckoutPage> },
+      { path: "/admin", element: <AdminDashboard></AdminDashboard> },
     ],
   },
   {
