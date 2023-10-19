@@ -3,12 +3,13 @@ import HeaderMenu from "../components/HeaderMenu";
 import axios from "../config/axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useCart } from "../hooks/use-cart";
 
 export default function AboutRecordPage() {
   const [productById, setProductById] = useState({});
 
   const { id } = useParams(); //id from route
-  console.log(id);
+  // console.log(id);
 
   useEffect(() => {
     axios
@@ -17,7 +18,28 @@ export default function AboutRecordPage() {
       .catch((e) => console.log(e));
   }, []);
 
-  console.log(productById);
+  // console.log(productById);
+
+  const [countItem, setCountItem] = useState(0);
+
+  const handleAddCount = () => {
+    setCountItem(countItem + 1);
+  };
+
+  const handleRemoveCount = () => {
+    if (countItem > 0) {
+      setCountItem(countItem - 1);
+    }
+  };
+
+  const {updateContext} = useCart();
+
+
+  const handleSumbit = () => {
+    //creat object in array to send to CartContext
+    const data = [{id,countItem}]
+    updateContext(data);
+  } 
 
   return (
     <>
@@ -35,16 +57,19 @@ export default function AboutRecordPage() {
             <div>{productById.albumName}</div>
             <div>{productById.price}</div>
             <div className="flex gap-5 items-center">
-              <div>count</div>
-              <button className="bg-gray-500 px-5 py-3 rounded-full text-white">
+              <div>{countItem}</div>
+              <button className="bg-gray-500 px-5 py-3 rounded-full text-white" onClick={handleRemoveCount}>
                 -
               </button>
-              <button className="bg-gray-500 px-5 py-3 rounded-full text-white">
+              <button
+                className="bg-gray-500 px-5 py-3 rounded-full text-white"
+                onClick={handleAddCount}
+              >
                 +
               </button>
             </div>
 
-            <button className="bg-black text-white p-3">Add to cart</button>
+            <button className="bg-black text-white p-3 " onClick={handleSumbit}>Add to cart</button>
           </div>
         </div>
       </div>
@@ -52,9 +77,7 @@ export default function AboutRecordPage() {
       <div className="h-[300px] bg-red-400 flex p-5">
         <div className="flex-1">
           <div>About</div>
-          <div>
-            {productById.recordInfo}
-          </div>
+          <div>{productById.recordInfo}</div>
         </div>
         <div className="flex-1">
           <div>Track:</div>

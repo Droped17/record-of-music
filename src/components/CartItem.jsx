@@ -13,14 +13,6 @@ export default function CartItem() {
             <div>price: 99999</div>
           </div>
         </div>
-        <div className="flex gap-3">
-          <button className="bg-gray-500 px-5 py-3 rounded-full text-white">
-            -
-          </button>
-          <button className="bg-gray-500 px-5 py-3 rounded-full text-white">
-            +
-          </button>
-        </div>
       </div>
     </>
   );

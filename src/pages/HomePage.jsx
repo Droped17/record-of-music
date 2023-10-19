@@ -4,12 +4,11 @@ import { useProduct } from "../hooks/use-product";
 
 export default function HomePage() {
   const { getProduct } = useProduct();
-  console.log(getProduct);
+  // console.log(getProduct);
 
   return (
     <>
       <HeaderMenu></HeaderMenu>
-
       <div>
         <img
           className="h-80 w-full object-cover"
@@ -21,7 +20,6 @@ export default function HomePage() {
       <main className="p-10">
         <div className="gap-16 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
           {getProduct?.map((el) => (
-            console.log(el),
             <RecordCardItem
               key={el.id}
               id={el.id}

@@ -2,6 +2,7 @@ import { useAuthen } from "./hooks/use-auth";
 import Route from "./router/route";
 import Loading from "./components/Loading";
 import ProductContextProvider from "./context/ProductContext";
+import CartContextProvider from "./context/CartContext";
 function App() {
   const { loadingTime } = useAuthen();
   if (loadingTime) {
@@ -11,7 +12,9 @@ function App() {
   return (
     <>
       <ProductContextProvider>
-        <Route></Route>
+        <CartContextProvider>
+          <Route></Route>
+        </CartContextProvider>
       </ProductContextProvider>
     </>
   );

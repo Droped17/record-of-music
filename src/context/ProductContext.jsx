@@ -29,9 +29,6 @@ export default function ProductContextProvider({ children }) {
   }, []);
 
 
-
-  
-
   // console.log(getProduct);
 
   return (

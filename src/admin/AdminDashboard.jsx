@@ -3,7 +3,7 @@ import { useProduct } from "../hooks/use-product";
 import { Link } from "react-router-dom";
 import axios from "../config/axios";
 import { useRef } from "react";
-import AdminDelete from "./AdminDelete";
+
 
 export default function AdminDashboard() {
   const fileEl = useRef(null);
@@ -32,7 +32,7 @@ export default function AdminDashboard() {
   const [file, setFile] = useState(null);
 
   //submit form.
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const formdata = new FormData();
     if (file) {
@@ -59,7 +59,7 @@ export default function AdminDashboard() {
 
     setLoading(true);
     console.log(file);
-    const res = axios.post("http://localhost:1112/product", formdata);
+    const res = await axios.post("http://localhost:1112/product", formdata);
   };
 
   const handleClick = (e) => {

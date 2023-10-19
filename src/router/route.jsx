@@ -12,6 +12,7 @@ import RedirectAuthen from "../auth/RedirectAuthen";
 import CheckoutPage from "../pages/CheckoutPage";
 import AdminDashboard from "../admin/AdminDashboard";
 import AdminEdit from "../admin/AdminEdit";
+import PaymentBill from "../pages/PaymentBill";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
       { path: "/checkout", element: <CheckoutPage></CheckoutPage> },
       { path: "/admin", element: <AdminDashboard></AdminDashboard> },
       { path: "/admin/edit/:id", element: <AdminEdit></AdminEdit> },
+      { path: "/payment", element: <PaymentBill></PaymentBill> },
     ],
   },
   {
