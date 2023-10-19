@@ -12,7 +12,7 @@ export default function AboutRecordPage() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:1112/authen/product/${id}`)
+      .get(`http://localhost:1112/product/${id}`)
       .then((res) => setProductById(res.data.product))
       .catch((e) => console.log(e));
   }, []);

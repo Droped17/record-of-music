@@ -21,6 +21,7 @@ export default function HomePage() {
       <main className="p-10">
         <div className="gap-16 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
           {getProduct?.map((el) => (
+            console.log(el),
             <RecordCardItem
               key={el.id}
               id={el.id}

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useProduct } from "../hooks/use-product";
+
 
 export default function RecordCardItem({
   albumName,

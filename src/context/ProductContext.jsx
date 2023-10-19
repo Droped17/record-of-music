@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import axios from "../config/axios";
 import { useState, useEffect, createContext } from "react";
 
@@ -6,9 +7,14 @@ export const ProductContext = createContext();
 export default function ProductContextProvider({ children }) {
   const [getProduct, setGetProduct] = useState([]);
 
+  const inputEl = useRef(null);
+  const [file,setFile] = useState(null);
+
+
+
   useEffect(() => {
     axios
-      .get("http://localhost:1112/authen/product", {
+      .get("http://localhost:1112/product", {
         id: "",
         albumName: "",
         price: "",
@@ -22,10 +28,14 @@ export default function ProductContextProvider({ children }) {
       .catch((e) => console.log(e));
   }, []);
 
+
+
+  
+
   // console.log(getProduct);
 
   return (
-    <ProductContext.Provider value={{getProduct}}>
+    <ProductContext.Provider value={{getProduct,inputEl,setFile,file}}>
       {children}
     </ProductContext.Provider>
   );

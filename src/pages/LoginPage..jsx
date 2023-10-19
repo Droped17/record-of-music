@@ -39,7 +39,7 @@ export default function LoginPage() {
     <div className="flex ">
       <div className="h-screen flex-1 flex items-center justify-center">
         <img
-          className="rounded-full flex-1"
+          className="rounded-full flex-1 animate-spin-slow"
           src="https://images.unsplash.com/photo-1620831450720-de4a2a539e61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80"
           alt=""
         />

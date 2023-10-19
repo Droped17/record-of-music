@@ -11,6 +11,7 @@ import Authenticated from "../auth/Authenticated";
 import RedirectAuthen from "../auth/RedirectAuthen";
 import CheckoutPage from "../pages/CheckoutPage";
 import AdminDashboard from "../admin/AdminDashboard";
+import AdminEdit from "../admin/AdminEdit";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
       },
       { path: "/checkout", element: <CheckoutPage></CheckoutPage> },
       { path: "/admin", element: <AdminDashboard></AdminDashboard> },
+      { path: "/admin/edit/:id", element: <AdminEdit></AdminEdit> },
     ],
   },
   {
