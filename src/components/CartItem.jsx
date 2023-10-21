@@ -11,12 +11,14 @@ export default function CartItem({ id, amount }) {
       .get(`http://localhost:1112/product/${id}`)
       .then((res) => {
         setProductById(res.data.product);
-        updateSubTotal(res.data.product.price);
+        // updateSubTotal(res.data.product.price);
+        updateSubTotal(subTotal);
       })
       .catch((e) => console.log(e));
   }, [id]);
 
   // console.log(productById);
+  const subTotal = productById.price * (amount || 0);
 
   return (
     <>
@@ -34,6 +36,7 @@ export default function CartItem({ id, amount }) {
               <div>ALBUM NAME: {productById.albumName}</div>
               <div>{amount}</div>
               <div>PRICE: {productById.price}</div>
+              <div>TOTAL PRICE: {subTotal}</div>
             </div>
           </div>
         </div>

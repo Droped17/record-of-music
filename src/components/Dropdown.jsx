@@ -15,15 +15,14 @@ export default function Dropdown() {
 
   useEffect(() => {
     if (value.length >= 1) {
-      const filterItem = value.filter((item)=>{
+      const filterItem = value.filter((item) => {
         if (!uniqueId.has(item.id)) {
           uniqueId.add(item.id);
           return true;
         }
-        return false
+        return false;
       });
       setCartItem(filterItem);
-
     }
   }, [value]);
 

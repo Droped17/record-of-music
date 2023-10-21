@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import axios from "../config/axios";
 import { useRef } from "react";
 
-
 export default function AdminDashboard() {
   const fileEl = useRef(null);
   //modal
@@ -32,7 +31,7 @@ export default function AdminDashboard() {
   const [file, setFile] = useState(null);
 
   //submit form.
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formdata = new FormData();
     if (file) {
@@ -62,11 +61,6 @@ export default function AdminDashboard() {
     const res = await axios.post("http://localhost:1112/product", formdata);
   };
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    setIsOpenform(!isOpenform);
-  };
-
   const handleDelete = async (id) => {
     const res = await axios.delete(`http://localhost:1112/product/${id}`);
   };
@@ -78,13 +72,9 @@ export default function AdminDashboard() {
   return (
     <>
       <div className="h-full p-5 flex flex-col gap-3">
-        <div className="text-center">Admin</div>
+        <div className="text-center text-2xl font-semibold">Admin</div>
         <div className="text-center">
-          <button className="p-3  bg-blue-500 text-white rounded-full">
-            Add Product
-          </button>
-          {/* modal */}
-          <div className="bg-gray-200  p-8 mt-3">
+          <div className="bg-gray-200  p-8 my-3">
             <form
               className="flex flex-col gap-2 w-[50vw] mx-auto"
               onSubmit={handleSubmit}
@@ -168,20 +158,27 @@ export default function AdminDashboard() {
           </div>
 
           {/* All Product */}
-          <div className="bg-green-400">
-            <div>
+          <div>
+            <div className="flex flex-col gap-5 w-[60vw] mx-auto">
               {getProduct.map((el) => (
-                <div key={el.id} id={el.id} className="flex justify-around">
-                  <div>{el.albumName}</div>
-                  <Link to={`/edit/${el.id}`}>
-                    <button className="bg-yellow-500 w-[80px] p-2">Edit</button>
-                  </Link>
-                  <button
-                    className="bg-red-500 w-[80px] p-2"
-                    onClick={() => handleDelete(el.id)}
-                  >
-                    Delete
-                  </button>
+                <div key={el.id} id={el.id} className="flex justify-between items-center shadow-sm hover:shadow-xl p-2 transition border rounded-2xl">
+                  <div>
+                    <img src={el.image} alt="album" className="w-40 rounded-2xl " />
+                  </div>
+                  <div className="text-lg font-semibold">{el.albumName}</div>
+                  <div className="flex gap-3">
+                    <Link to={`/edit/${el.id}`}>
+                      <button className="bg-yellow-500 w-[80px] p-2 rounded-md text-white">
+                        Edit
+                      </button>
+                    </Link>
+                    <button
+                      className="bg-red-500 w-[80px] p-2 rounded-md text-white"
+                      onClick={() => handleDelete(el.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>

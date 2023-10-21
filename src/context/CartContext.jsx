@@ -20,7 +20,6 @@ export default function CartContextProvider({ children }) {
 
   const updateSubTotal = (price) => {
     setTotalPrice(price);
-    console.log(totalPrice);
   };
 
   useEffect(() => {
@@ -29,7 +28,7 @@ export default function CartContextProvider({ children }) {
 
   return (
     <CartContext.Provider
-      value={{ getProduct, updateContext, value, setValue, updateSubTotal }}
+      value={{ getProduct, updateContext, value, setValue,updateSubTotal }}
     >
       {children}
     </CartContext.Provider>

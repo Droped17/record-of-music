@@ -7,7 +7,7 @@ import { useCart } from "../hooks/use-cart";
 
 export default function AboutRecordPage() {
   const [productById, setProductById] = useState({});
-
+  const {price} = productById;
   const { id } = useParams(); //id from route
   // console.log(id);
 
@@ -36,7 +36,7 @@ export default function AboutRecordPage() {
 
   const handleSumbit = () => {
     //creat object in array to send to CartContext
-    const data = [{ id, countItem }];
+    const data = [{ id, countItem,price }];
     updateContext(data);
   };
 
