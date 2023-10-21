@@ -16,7 +16,7 @@ export default function AboutRecordPage() {
       .get(`http://localhost:1112/product/${id}`)
       .then((res) => setProductById(res.data.product))
       .catch((e) => console.log(e));
-  }, []);
+  }, [id]);
 
   // console.log(productById);
 
