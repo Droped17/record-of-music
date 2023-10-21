@@ -11,9 +11,19 @@ export default function Dropdown() {
 
   console.log(cartItem);
 
+  const uniqueId = new Set();
+
   useEffect(() => {
     if (value.length >= 1) {
-      setCartItem(value);
+      const filterItem = value.filter((item)=>{
+        if (!uniqueId.has(item.id)) {
+          uniqueId.add(item.id);
+          return true;
+        }
+        return false
+      });
+      setCartItem(filterItem);
+
     }
   }, [value]);
 
@@ -31,7 +41,7 @@ export default function Dropdown() {
           <CartItem key={el.uuid} id={el.id} amount={el.countItem}></CartItem>
         ))}
 
-        <div className="text-center p-3">sub total : 999999</div>
+        <div className="text-center p-3">sub total : </div>
         <div className="flex">
           <Link to="/">
             <button className="bg-gray-400 p-3 flex-1">SHOP MORE</button>

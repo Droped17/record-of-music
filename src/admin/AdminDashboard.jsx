@@ -173,7 +173,7 @@ export default function AdminDashboard() {
               {getProduct.map((el) => (
                 <div key={el.id} id={el.id} className="flex justify-around">
                   <div>{el.albumName}</div>
-                  <Link to={`/admin/edit/${el.id}`}>
+                  <Link to={`/edit/${el.id}`}>
                     <button className="bg-yellow-500 w-[80px] p-2">Edit</button>
                   </Link>
                   <button

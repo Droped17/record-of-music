@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 import axios from "../config/axios";
+import { useCart } from "../hooks/use-cart";
 
 export default function CartItem({ id, amount }) {
   const [productById, setProductById] = useState({});
   const [loading, setLoading] = useState();
+  const { updateSubTotal } = useCart();
   useEffect(() => {
     axios
       .get(`http://localhost:1112/product/${id}`)
       .then((res) => {
         setProductById(res.data.product);
-        setLoading(false);
+        updateSubTotal(res.data.product.price);
       })
       .catch((e) => console.log(e));
-  }, []);
+  }, [id]);
 
   // console.log(productById);
 

@@ -32,14 +32,13 @@ export default function AboutRecordPage() {
     }
   };
 
-  const {updateContext} = useCart();
-
+  const { updateContext } = useCart();
 
   const handleSumbit = () => {
     //creat object in array to send to CartContext
-    const data = [{id,countItem}]
+    const data = [{ id, countItem }];
     updateContext(data);
-  } 
+  };
 
   return (
     <>
@@ -58,7 +57,10 @@ export default function AboutRecordPage() {
             <div>{productById.price}</div>
             <div className="flex gap-5 items-center">
               <div>{countItem}</div>
-              <button className="bg-gray-500 px-5 py-3 rounded-full text-white" onClick={handleRemoveCount}>
+              <button
+                className="bg-gray-500 px-5 py-3 rounded-full text-white"
+                onClick={handleRemoveCount}
+              >
                 -
               </button>
               <button
@@ -69,7 +71,13 @@ export default function AboutRecordPage() {
               </button>
             </div>
 
-            <button className="bg-black text-white p-3 " onClick={handleSumbit}>Add to cart</button>
+            <button
+              className={`${countItem == 0 ? "bg-gray-300  text-white p-3" :"bg-black text-white p-3"}`}
+              onClick={handleSumbit}
+              disabled={countItem == 0}
+            >
+              Add to cart
+            </button>
           </div>
         </div>
       </div>

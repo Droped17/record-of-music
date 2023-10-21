@@ -9,9 +9,7 @@ export default function Header() {
     setDropDownStatus(!dropDownStatus);
   };
 
-
-
-  const {authStatus,logout} = useAuthen();
+  const { authStatus, logout } = useAuthen();
   // console.log(authStatus);
 
   return (
@@ -31,7 +29,7 @@ export default function Header() {
         <div className="font-semibold text-mdrounded-md w-80 p-1 relative">
           <div className="flex justify-between items-center">
             {" "}
-            <div className="flex items-center flex-1">
+            <div className="flex items-center flex-1 justify-around">
               <img
                 src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                 alt="user"
@@ -39,8 +37,23 @@ export default function Header() {
               />
               <div className="px-2">{authStatus.firstName}</div>
               <div>
-                <button className="p-2 bg-red-400 rounded-md hover:bg-red-500 transition text-white" onClick={logout}>Log Out</button>
+                {authStatus.isAdmin === "true" ? (
+                  <Link to="/admin">
+                    <button className="text-white p-2 bg-blue-400 rounded-md">
+                      Dashboard
+                    </button>
+                  </Link>
+                ) : undefined}
               </div>
+              <div>
+                <button
+                  className="p-2 bg-red-400 rounded-md hover:bg-red-500 transition text-white"
+                  onClick={logout}
+                >
+                  Log Out
+                </button>
+              </div>
+              <div></div>
             </div>
             <div className="cursor-pointer " onClick={handleDropdown}>
               ICON

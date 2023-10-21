@@ -7,6 +7,7 @@ export const CartContext = createContext();
 
 export default function CartContextProvider({ children }) {
   const { getProduct } = useProduct();
+  const [totalPrice, setTotalPrice] = useState(0);
   const [value, setValue] = useState([
     {
       id: "",
@@ -17,17 +18,18 @@ export default function CartContextProvider({ children }) {
     setValue([...value, ...newValue]);
   };
 
-  useEffect(()=>{
-    value.splice(0,1);
-  },[]);
-  // setCartValue({...value,newValue});
-  // console.log(cartValue);
+  const updateSubTotal = (price) => {
+    setTotalPrice(price);
+    console.log(totalPrice);
+  };
 
-  //   console.log(value);
+  useEffect(() => {
+    value.splice(0, 1);
+  }, []);
 
   return (
     <CartContext.Provider
-      value={{ getProduct, updateContext, value, setValue }}
+      value={{ getProduct, updateContext, value, setValue, updateSubTotal }}
     >
       {children}
     </CartContext.Provider>
