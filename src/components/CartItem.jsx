@@ -1,24 +1,33 @@
 import { useEffect, useState } from "react";
 import axios from "../config/axios";
 import { useCart } from "../hooks/use-cart";
+import { useProduct } from "../hooks/use-product";
 
 export default function CartItem({ id, amount }) {
   const [productById, setProductById] = useState({});
   const [loading, setLoading] = useState();
-  const { updateSubTotal } = useCart();
+  const { updateSubTotal, cartItem, updateContext } = useCart();
+
+  // get product
   useEffect(() => {
     axios
       .get(`http://localhost:1112/product/${id}`)
       .then((res) => {
         setProductById(res.data.product);
         // updateSubTotal(res.data.product.price);
-        updateSubTotal(subTotal);
+        setLoading(false);
       })
-      .catch((e) => console.log(e));
-  }, [id]);
+      .catch((e) => {
+        console.log(e);
+        setLoading(false);
+      });
+  }, [id, amount]);
 
-  // console.log(productById);
   const subTotal = productById.price * (amount || 0);
+
+  useEffect(() => {
+    updateSubTotal(subTotal);
+  }, [subTotal]);
 
   return (
     <>

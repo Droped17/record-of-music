@@ -1,30 +1,25 @@
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
-import { useState } from "react";
 import { useCart } from "../hooks/use-cart";
 import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
 import { useEffect } from "react";
 
 export default function Dropdown() {
-  const { getProduct, value } = useCart(); //value: obj
-  const [cartItem, setCartItem] = useState(value);
+  const { cartItem, subTotal } = useCart(); //value: obj
+  const [subTotalArray, setSubTotalArray] = useState([]);
 
   console.log(cartItem);
 
-  const uniqueId = new Set();
-
   useEffect(() => {
-    if (value.length >= 1) {
-      const filterItem = value.filter((item) => {
-        if (!uniqueId.has(item.id)) {
-          uniqueId.add(item.id);
-          return true;
-        }
-        return false;
-      });
-      setCartItem(filterItem);
+    if (subTotal != null && !isNaN(subTotal)) {
+      setSubTotalArray((prev) => [...prev, subTotal]);
+      console.log(subTotalArray);
     }
-  }, [value]);
+  }, [subTotal]);
+
+  const total = subTotalArray.reduce((acc,current)=> acc + +current,0);
+  console.log(total);
 
   //use uuid becuse key issue(same keyid)
   cartItem.forEach((item) => {
@@ -40,7 +35,7 @@ export default function Dropdown() {
           <CartItem key={el.uuid} id={el.id} amount={el.countItem}></CartItem>
         ))}
 
-        <div className="text-center p-3">sub total : </div>
+        <div className="text-center p-3">sub total : {total}</div>
         <div className="flex">
           <Link to="/">
             <button className="bg-gray-400 p-3 flex-1">SHOP MORE</button>

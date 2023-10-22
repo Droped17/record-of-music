@@ -7,7 +7,7 @@ import { useCart } from "../hooks/use-cart";
 
 export default function AboutRecordPage() {
   const [productById, setProductById] = useState({});
-  const {price} = productById;
+  const { price } = productById;
   const { id } = useParams(); //id from route
   // console.log(id);
 
@@ -18,7 +18,7 @@ export default function AboutRecordPage() {
       .catch((e) => console.log(e));
   }, [id]);
 
-  // console.log(productById);
+  // console.log(productById); //{id,albumName,genreName,price,artistId,score,recordInfo}
 
   const [countItem, setCountItem] = useState(0);
 
@@ -32,12 +32,15 @@ export default function AboutRecordPage() {
     }
   };
 
-  const { updateContext } = useCart();
+  const { updateContext, value,addToCart } = useCart();
+  // console.log(value); //[]
 
   const handleSumbit = () => {
     //creat object in array to send to CartContext
-    const data = [{ id, countItem,price }];
+    const data = [{ id, countItem, price }];
     updateContext(data);
+    addToCart(productById.id, countItem);
+    setCountItem(0);
   };
 
   return (
@@ -72,7 +75,11 @@ export default function AboutRecordPage() {
             </div>
 
             <button
-              className={`${countItem == 0 ? "bg-gray-300  text-white p-3" :"bg-black text-white p-3"}`}
+              className={`${
+                countItem == 0
+                  ? "bg-gray-300  text-white p-3"
+                  : "bg-black text-white p-3"
+              }`}
               onClick={handleSumbit}
               disabled={countItem == 0}
             >
