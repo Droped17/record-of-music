@@ -46,6 +46,10 @@ export default function CartContextProvider({ children }) {
     }
   };
 
+  
+
+  
+
   return (
     <CartContext.Provider
       value={{

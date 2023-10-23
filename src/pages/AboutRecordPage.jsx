@@ -45,7 +45,7 @@ export default function AboutRecordPage() {
 
   return (
     <>
-      <HeaderMenu></HeaderMenu>
+      {/* <HeaderMenu></HeaderMenu> */}
       <div className="h-[50vh] bg-gray-200 flex">
         <div className="flex-1 flex justify-center">
           <img
@@ -89,19 +89,12 @@ export default function AboutRecordPage() {
         </div>
       </div>
 
-      <div className="h-[300px] bg-red-400 flex p-5">
+      <div className="h-full border-t flex p-5">
         <div className="flex-1">
-          <div>About</div>
-          <div>{productById.recordInfo}</div>
+          <div className="text-2xl font-semibold mb-5">About Album</div>
+          <div className="text-md">{productById.recordInfo}</div>
         </div>
-        <div className="flex-1">
-          <div>Track:</div>
-          <div>track name</div>
-          <div>track name</div>
-          <div>track name</div>
-          <div>track name</div>
-          <div>track name</div>
-        </div>
+
       </div>
     </>
   );

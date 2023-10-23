@@ -8,7 +8,7 @@ export default function HomePage() {
 
   return (
     <>
-      <HeaderMenu></HeaderMenu>
+      {/* <HeaderMenu></HeaderMenu> */}
       <div>
         <img
           className="h-80 w-full object-cover"

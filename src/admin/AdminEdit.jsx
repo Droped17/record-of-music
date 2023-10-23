@@ -11,7 +11,7 @@ export default function AdminEdit() {
     albumName: "",
     genreName: "",
     price: "",
-    artistId: "",
+    artistName: "",
     image: "",
     recordInfo: "",
     score: "",
@@ -48,10 +48,10 @@ export default function AdminEdit() {
     if (inputData.price) {
       formdata.append("price", inputData.price);
     }
-    if (inputData.artistId) {
-      formdata.append("artistId", inputData.artistId);
+    if (inputData.artistName) {
+      formdata.append("artistName", inputData.artistName);
     }
-    if (inputData.albumName) {
+    if (inputData.recordInfo) {
       formdata.append("recordInfo", inputData.recordInfo);
     }
     if (inputData.score) {
@@ -93,13 +93,13 @@ export default function AdminEdit() {
             onChange={handleOnChange}
             value={inputData.price}
           />
-          <p className="text-start font-semibold text-xl">artist</p>
+          <p className="text-start font-semibold text-xl">artistName</p>
           <input
             className="h-10 p-3"
             type="text"
-            name="artistId"
+            name="artistName"
             onChange={handleOnChange}
-            value={inputData.artistId}
+            value={inputData.artistName}
           />
           <p className="text-start font-semibold text-xl">image</p>
           {file ? (

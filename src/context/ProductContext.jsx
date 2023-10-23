@@ -17,6 +17,7 @@ export default function ProductContextProvider({ children }) {
       .get("http://localhost:1112/product", {
         id: "",
         albumName: "",
+        artistName:"",
         price: "",
         recordInfo: "",
         image: "",

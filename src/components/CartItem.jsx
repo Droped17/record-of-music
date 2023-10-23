@@ -3,6 +3,7 @@ import axios from "../config/axios";
 import { useCart } from "../hooks/use-cart";
 import { useProduct } from "../hooks/use-product";
 
+
 export default function CartItem({ id, amount }) {
   const [productById, setProductById] = useState({});
   const [loading, setLoading] = useState();
@@ -10,7 +11,7 @@ export default function CartItem({ id, amount }) {
 
   // get product
   useEffect(() => {
-    axios
+    const item = axios
       .get(`http://localhost:1112/product/${id}`)
       .then((res) => {
         setProductById(res.data.product);
@@ -28,6 +29,7 @@ export default function CartItem({ id, amount }) {
   useEffect(() => {
     updateSubTotal(subTotal);
   }, [subTotal]);
+
 
   return (
     <>
